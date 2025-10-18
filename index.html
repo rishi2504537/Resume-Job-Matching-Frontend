@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume-Job Matching System</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav>
+        <a class="logo" onclick="showPage('home')">RJM</a>
+        <ul class="nav-links">
+            <li><a onclick="showPage('home')">Home</a></li>
+            <li><a onclick="showPage('employee')">Employee</a></li>
+            <li><a onclick="showPage('recruiter')">Recruiter</a></li>
+        </ul>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home" class="page active home-page">
+        <div class="home-content">
+            <div class="home-left">
+                <h1>Resume–Job Matching System</h1>
+                <p>Intelligent matching between job seekers and job opportunities using advanced data mining and warehousing techniques</p>
+                
+                <div class="feature">
+                    <div class="feature-icon">⚙️</div>
+                    <div class="feature-text">
+                        <h3>Smart Matching</h3>
+                        <p>Advanced algorithms match your profile with perfect job opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">📊</div>
+                    <div class="feature-text">
+                        <h3>Data Insights</h3>
+                        <p>Transparent analytics to understand your career fit and growth opportunities.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🚀</div>
+                    <div class="feature-text">
+                        <h3>Fast Setup</h3>
+                        <p>Get started in minutes. Simply upload and discover opportunities.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="home-right">
+                <h2>Get Started</h2>
+                <div class="home-buttons">
+                    <button class="btn-home btn-primary" onclick="showPage('employee')">👤 I'm an Employee</button>
+                    <button class="btn-home btn-secondary" onclick="showPage('recruiter')">💼 I'm a Recruiter</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Employee Portal Page -->
+    <div id="employee" class="page employee-page">
+        <div class="content-container">
+            <div class="left-content">
+                <h1>Upload Your Resume</h1>
+                <p>Get started in seconds. Upload your resume and discover job opportunities that match your profile. Our intelligent matching system will find the perfect roles for you.</p>
+                
+                <div class="feature">
+                    <div class="feature-icon">📄</div>
+                    <div class="feature-text">
+                        <h3>Smart Parsing</h3>
+                        <p>Your resume is automatically analyzed to extract key information.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🎯</div>
+                    <div class="feature-text">
+                        <h3>Perfect Matches</h3>
+                        <p>Get matched with jobs that align with your skills and experience.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-box">
+                <div class="success-message" id="employeeSuccessMsg">
+                    ✓ Resume uploaded successfully! Your profile is ready for job matching.
+                </div>
+
+                <form id="employeeForm" onsubmit="handleEmployeeSubmit(event)">
+                    <h2>Upload Resume</h2>
+                    
+                    <div class="form-group">
+                        <label for="resume">Resume (PDF) *</label>
+                        <div class="file-input-wrapper">
+                            <input type="file" id="resume" name="resume" accept=".pdf" required onchange="updateFileName('resume', 'resumeFileName')">
+                            <label for="resume" class="file-input-label">
+                                📁 Click to upload or drag & drop
+                                <span class="file-name" id="resumeFileName" style="display:none;"></span>
+                            </label>
+                        </div>
+                        <div class="info-text">✓ Supported: PDF | Maximum size: 5MB</div>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Upload & Match</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recruiter Portal Page -->
+    <div id="recruiter" class="page recruiter-page">
+        <div class="content-container">
+            <div class="left-content">
+                <h1>Post Job Openings</h1>
+                <p>Post your job descriptions and connect with qualified candidates. Our matching algorithm will find the best talent for your roles from our candidate pool.</p>
+                
+                <div class="feature">
+                    <div class="feature-icon">📋</div>
+                    <div class="feature-text">
+                        <h3>Easy Posting</h3>
+                        <p>Upload job descriptions quickly and efficiently.</p>
+                    </div>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <div class="feature-text">
+                        <h3>Top Matches</h3>
+                        <p>Get ranked candidate recommendations based on job requirements.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-box">
+                <div class="success-message" id="recruiterSuccessMsg">
+                    ✓ Job posted successfully! Your opening is now visible to candidates.
+                </div>
+
+                <div class="recruiter-tabs">
+                    <button class="recruiter-tab active" onclick="switchTab('post-job', event)">Post Job</button>
+                    <button class="recruiter-tab" onclick="switchTab('posted-jobs', event)">Posted Jobs</button>
+                </div>
+
+                <div id="post-job" class="tab-content active">
+                    <form id="recruiterForm" onsubmit="handleRecruiterSubmit(event)">
+                        <div class="form-group">
+                            <label for="jobDescription">Job Description (PDF) *</label>
+                            <div class="file-input-wrapper">
+                                <input type="file" id="jobDescription" name="jobDescription" accept=".pdf" required onchange="updateFileName('jobDescription', 'jobDescFileName')">
+                                <label for="jobDescription" class="file-input-label">
+                                    📁 Click to upload or drag & drop
+                                    <span class="file-name" id="jobDescFileName" style="display:none;"></span>
+                                </label>
+                            </div>
+                            <div class="info-text">✓ Supported: PDF | Maximum size: 10MB</div>
+                        </div>
+
+                        <button type="submit" class="btn-submit">Post Job</button>
+                    </form>
+                </div>
+
+                <div id="posted-jobs" class="tab-content">
+                    <div id="jobsList">
+                        <div class="no-jobs">📭 No jobs posted yet. Start by posting a job opening!</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
